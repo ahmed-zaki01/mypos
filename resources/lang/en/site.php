@@ -2,6 +2,6 @@
 
 return [
     'dashboard' => 'Dashboard',
-    '' => '',
+    'lang' => 'Languages',
     '' => '',
 ];

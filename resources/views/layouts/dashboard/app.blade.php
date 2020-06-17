@@ -47,7 +47,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" dir="{{LaravelLocalization::getCurrentLocaleDirection() }}">
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -61,6 +61,25 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
+
+                <!-- list of languages of laravelLocalization -->
+                <li class="nav-item d-none d-sm-inline-block">
+                    <div class="dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">Languages</a>
+                        <div class="dropdown-menu" style="min-width: 112px;" aria-labelledby="dropdownMenuButton">
+                            <ul class="list-unstyled ml-3">
+                                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <li>
+                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        {{ $properties['native'] }}
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
 
             <!-- SEARCH FORM -->
