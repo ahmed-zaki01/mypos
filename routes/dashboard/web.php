@@ -12,9 +12,14 @@ Route::group(
         //'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
-        Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
 
             Route::get('/index', 'DashboardController@index')->name('index');
+            Route::get('/logout', 'DashboardController@logout')->name('logout');
+
+
+            //user routes
+            Route::resource('users', 'UserController')->except(['show']);
         }); //end of dashboard routes
     }
 );
