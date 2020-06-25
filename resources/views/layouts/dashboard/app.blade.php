@@ -147,6 +147,7 @@
     <!-- AdminLTE App -->
     <script src="{{asset('dashboard')}}/js/adminlte.min.js"></script>
 
+    <!-- custom general script -->
     <script>
         $('.delete').click(function(e) {
             //"use strict";

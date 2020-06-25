@@ -59,8 +59,7 @@ class UserController extends Controller
 
         $request->session()->flash('status', 'User added successfully!');
         return redirect(route('dashboard.users.index'));
-        //dd($user);
-    }
+    } //end of store user
 
 
     public function edit(User $user)
@@ -88,7 +87,7 @@ class UserController extends Controller
 
         $request->session()->flash('status', 'User updated successfully!');
         return redirect(route('dashboard.users.index'));
-    }
+    } //end of update user
 
 
     public function destroy(User $user)
@@ -96,5 +95,5 @@ class UserController extends Controller
         $user->delete();
         session()->flash('status', 'User deleted successfully!');
         return redirect(route('dashboard.users.index'));
-    }
+    } //end of destroy user
 }
