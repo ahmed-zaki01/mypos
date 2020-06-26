@@ -12,29 +12,19 @@ class User extends Authenticatable
     use LaratrustUserTrait;
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password', 'img'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+
+    protected $appends = ['img_path'];
+
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -50,4 +40,8 @@ class User extends Authenticatable
         return ucfirst($value);
     } // end of get last name method
 
+    public function getImgPathAttribute()
+    {
+        return asset('uploads/users/' . $this->img);
+    }
 } //end of user model

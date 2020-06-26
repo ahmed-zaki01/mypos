@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -46,10 +48,20 @@ class UserController extends Controller
             'last_name' => 'required|string|max:50',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
+            'img' => 'nullable|image|mimes:jpg,png,jpeg',
+            'permissions' => 'required|exists:permissions,name',
         ]);
 
         $data = $request->except(['password', 'password_confirmation', 'permissions']);
         $data['password'] = bcrypt($request->password);
+
+        $imgNewName = $data['img']->hashName();
+        \Image::make($data['img'])->resize(100, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('uploads/users/' . $imgNewName));
+
+        $data['img'] = $imgNewName;
+
         //dd($data);
         $user = User::create($data);
         if ($request->permissions) {
@@ -70,13 +82,32 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
 
+        // dd($request->all());
+
         $request->validate([
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
-            'email' => 'required|email',
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'img' => 'nullable|image|mimes:jpg,png,jpeg',
+            'permissions' => 'required|exists:permissions,name',
         ]);
 
         $data = $request->except(['permissions']);
+
+        if ($request->img) {
+            if ($user->img !== 'default.png') {
+                Storage::disk('uploads')->delete('users/' . $user->img);
+            }
+
+            $imgNewName = $data['img']->hashName();
+
+            \Image::make($data['img'])->resize(100, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/users/' . $imgNewName));
+
+            $data['img'] = $imgNewName;
+        }
+
         $user->update($data);
         if ($request->permissions) {
             $user->syncPermissions($request->permissions);
@@ -85,6 +116,7 @@ class UserController extends Controller
             $user->detachPermissions($permissions);
         }
 
+
         $request->session()->flash('status', 'User updated successfully!');
         return redirect(route('dashboard.users.index'));
     } //end of update user
@@ -92,6 +124,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        if ($user->img !== 'default.png') {
+            Storage::disk('uploads')->delete('users/' . $user->img);
+        }
+
         $user->delete();
         session()->flash('status', 'User deleted successfully!');
         return redirect(route('dashboard.users.index'));

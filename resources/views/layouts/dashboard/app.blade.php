@@ -50,6 +50,9 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('dashboard/plugins')}}/daterangepicker/daterangepicker.css" />
 
+    <!-- custom page style -->
+    @yield('style')
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" dir="{{LaravelLocalization::getCurrentLocaleDirection() }}">
@@ -147,7 +150,9 @@
     <!-- AdminLTE App -->
     <script src="{{asset('dashboard')}}/js/adminlte.min.js"></script>
 
-    <!-- custom general script -->
+    <!-- custom page script -->
+    @yield('script')
+    <!-- custom public script -->
     <script>
         $('.delete').click(function(e) {
             //"use strict";

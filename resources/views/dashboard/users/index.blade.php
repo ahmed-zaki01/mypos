@@ -1,5 +1,14 @@
 @extends('layouts.dashboard.app')
 
+@section('style')
+<style>
+    .table-col {
+        vertical-align: middle !important;
+    }
+</style>
+
+@endsection
+
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -66,6 +75,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -73,12 +83,13 @@
                 @foreach ($users as $index => $user)
 
                 <tr>
-                    <td>{{$index + 1}}</td>
-                    <td>{{$user->first_name}}</td>
-                    <td>{{$user->last_name}}</td>
-                    <td>{{$user->email}}</td>
+                    <td class="table-col">{{$index + 1}}</td>
+                    <td class="table-col">{{$user->first_name}}</td>
+                    <td class="table-col">{{$user->last_name}}</td>
+                    <td class="table-col">{{$user->email}}</td>
+                    <td class="table-col"><img src="{{$user->img_path}}" style="height: 75px;" class="img-thumbnail" alt=""> </td>
 
-                    <td class="d-flex justify-content-center">
+                    <td class="row justify-content-center align-items-center" style="height: 100px;">
                         @if (auth()->user()->hasPermission('update_users'))
                         <a href="{{route('dashboard.users.edit', $user->id)}}" class="btn btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @else
@@ -101,7 +112,7 @@
             </tbody>
         </table>
         @else
-        <p class="py-5 text-center">@lang('site.no_data_found')</p>
+        <h2 class="py-5 text-center">@lang('site.no_data_found')</h2>
         @endif
     </div>
     <!-- /.card-body -->

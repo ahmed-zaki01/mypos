@@ -1,5 +1,21 @@
 @extends('layouts.dashboard.app')
 
+@section('script')
+<script>
+    $(".img-input").change(function() {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('.img-preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(this.files[0]); // convert to base64 string
+        }
+    });
+</script>
+@endsection
+
 @section('content')
 <div class="card card-primary mt-5">
     @include('partials._errors')
@@ -10,7 +26,7 @@
         <a href="{{url()->previous()}}" class="btn btn-default text-dark float-right"><i class="fas fa-arrow-left mr-2"></i> Back</a>
     </div> <!-- /.card-header -->
     <!-- form start -->
-    <form action="{{route('dashboard.users.store')}}" method="post">
+    <form action="{{route('dashboard.users.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
 
@@ -27,6 +43,15 @@
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" name="email" value="{{old('email')}}" class="form-control" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="img">Image</label>
+                <input type="file" name="img" class="form-control img-input" id="img" required>
+            </div>
+
+            <div class="form-group">
+                <img src="{{asset('uploads/users/default.png')}}" style="height: 100px;" class="img-thumbnail img-preview" alt="user profile image">
             </div>
 
             <div class="form-group">
