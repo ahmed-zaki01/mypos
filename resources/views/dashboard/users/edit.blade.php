@@ -27,9 +27,9 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form action="{{route('dashboard.users.update', $user->id)}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('dashboard.users.update', $user->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('put')
+        @method('PUT')
 
         <div class="card-body">
 

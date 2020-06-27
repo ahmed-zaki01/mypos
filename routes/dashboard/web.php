@@ -20,6 +20,15 @@ Route::group(
 
             //user routes
             Route::resource('users', 'UserController')->except(['show']);
+
+            //category routes
+            Route::resource('cats', 'CatController')->except(['show']);
+            // Route::prefix('cats')->name('cats.')->group(function () {
+            //     Route::get('/create', ['middleware' => ['permission:create_cats'], 'uses' => 'CatController@create'])->name('create');
+            // });
+
+            //product routes
+            //Route::resource('products', 'ProductController')->except(['show']);
         }); //end of dashboard routes
     }
 );

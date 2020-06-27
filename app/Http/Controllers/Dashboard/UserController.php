@@ -24,8 +24,10 @@ class UserController extends Controller
         //  $data['users'] = User::all();
 
 
-        $data['users'] = User::whereRoleIs('admin')->when($request->search, function ($q) use ($request) {
-            return $q->where('first_name', 'like', '%' . $request->search . '%')->orWhere('last_name', 'like', '%' . $request->search . '%');
+        $data['users'] = User::whereRoleIs('admin')->where(function ($q) use ($request) {
+            return $q->when($request->search, function ($q) use ($request) {
+                return $q->where('first_name', 'like', '%' . $request->search . '%')->orWhere('last_name', 'like', '%' . $request->search . '%');
+            });
         })->latest()->paginate(5);
 
 
@@ -69,7 +71,7 @@ class UserController extends Controller
             $user->syncPermissions($request->permissions);
         }
 
-        $request->session()->flash('status', 'User added successfully!');
+        session()->flash('status', 'User added successfully!');
         return redirect(route('dashboard.users.index'));
     } //end of store user
 
@@ -112,12 +114,12 @@ class UserController extends Controller
         if ($request->permissions) {
             $user->syncPermissions($request->permissions);
         } else {
-            $permissions = ['create_users', 'read_users', 'update_users', 'delete_users'];
+            $permissions = ['create_users', 'read_users', 'update_users', 'delete_users', 'create_cats', 'read_cats', 'update_cats', 'delete_cats'];
             $user->detachPermissions($permissions);
         }
 
 
-        $request->session()->flash('status', 'User updated successfully!');
+        session()->flash('status', 'User updated successfully!');
         return redirect(route('dashboard.users.index'));
     } //end of update user
 

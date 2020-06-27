@@ -39,6 +39,16 @@
                 </li>
                 @endif
 
+                @if (auth()->user()->hasPermission('read_cats'))
+
+                <li class="nav-item">
+                    <a href="{{route('dashboard.cats.index')}}" class="nav-link">
+                        <i class="fas fa-list"></i>
+                        <p class="ml-1">Categories</p>
+                    </a>
+                </li>
+                @endif
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

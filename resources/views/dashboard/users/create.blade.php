@@ -26,7 +26,7 @@
         <a href="{{url()->previous()}}" class="btn btn-default text-dark float-right"><i class="fas fa-arrow-left mr-2"></i> Back</a>
     </div> <!-- /.card-header -->
     <!-- form start -->
-    <form action="{{route('dashboard.users.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('dashboard.users.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
 

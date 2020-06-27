@@ -21,7 +21,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Users</li>
+                    <li class="breadcrumb-item active">Categories</li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -32,16 +32,16 @@
 </div>
 <!-- /.content-header -->
 
-<!-- users table -->
+<!-- cats table -->
 <div class="card">
     <div class="card-header">
         <div class="row justify-content-between mb-2">
             <div class="col-sm-6">
-                <h3 class="card-title mt-3">@lang('site.users') Table - Total ({{$users->total()}})</h3>
+                <h3 class="card-title mt-3">@lang('site.cats') Table - Total ({{$cats->total()}})</h3>
             </div>
             <!-- /.col -->
             <div class="col-sm-6 d-flex text-right">
-                <form action="{{route('dashboard.users.index')}}" method="get" class="w-100">
+                <form action="{{route('dashboard.cats.index')}}" method="GET" class="w-100">
                     <div class="row justify-content-between mt-1">
                         <div class="col-md-8">
                             <div class="row">
@@ -50,8 +50,8 @@
                             </div>
                         </div>
 
-                        @if (auth()->user()->hasPermission('create_users'))
-                        <a href="{{route('dashboard.users.create')}}" class="btn btn-primary col-md-2"><i class="fa fa-plus"></i> Add</a>
+                        @if (auth()->user()->hasPermission('create_cats'))
+                        <a href="{{route('dashboard.cats.create')}}" class="btn btn-primary col-md-2"><i class="fa fa-plus"></i> Add</a>
                         @else
                         <a href="#" class="btn btn-primary col-md-2 disabled"><i class="fa fa-plus"></i> Add</a>
                         @endif
@@ -67,37 +67,30 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        @if ($users->count())
+        @if ($cats->count())
         <table class="table table-hover text-center">
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Image</th>
+                    <th>Name</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $index => $user)
+                @foreach ($cats as $index => $cat)
 
                 <tr>
                     <td class="table-col">{{$index + 1}}</td>
-                    <td class="table-col">{{$user->first_name}}</td>
-                    <td class="table-col">{{$user->last_name}}</td>
-                    <td class="table-col">{{$user->email}}</td>
-                    <td class="table-col"><img src="{{$user->img_path}}" style="height: 75px;" class="img-thumbnail" alt=""> </td>
-
-                    <td class="row justify-content-center align-items-center" style="height: 100px;">
-                        @if (auth()->user()->hasPermission('update_users'))
-                        <a href="{{route('dashboard.users.edit', $user->id)}}" class="btn btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
+                    <td class="table-col">{{$cat->name}}</td>
+                    <td class="row justify-content-center align-items-center">
+                        @if (auth()->user()->hasPermission('update_cats'))
+                        <a href="{{route('dashboard.cats.edit', $cat->id)}}" class="btn btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @else
                         <a href="#" class="btn btn-info disabled mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @endif
 
-                        @if (auth()->user()->hasPermission('delete_users'))
-                        <form action="{{route('dashboard.users.destroy', $user->id)}}" method="post">
+                        @if (auth()->user()->hasPermission('delete_cats'))
+                        <form action="{{route('dashboard.cats.destroy', $cat->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
 
@@ -117,7 +110,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-        {{ $users->appends(request()->query())->links() }}
+        {{ $cats->appends(request()->query())->links() }}
     </div>
 </div>
 @endsection
