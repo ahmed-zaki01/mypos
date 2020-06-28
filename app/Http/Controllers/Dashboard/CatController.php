@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class CatController extends Controller
 {
@@ -23,9 +24,9 @@ class CatController extends Controller
     public function index(Request $request)
     {
 
+        $locale = LaravelLocalization::getCurrentLocale();
 
-
-        $cats = CatTranslation::where(function ($q) use ($request) {
+        $cats = CatTranslation::where('locale', $locale)->Where(function ($q) use ($request) {
             return $q->when($request->search, function ($q) use ($request) {
                 return $q->where('name', 'like', '%' . $request->search . '%');
             });

@@ -10,11 +10,6 @@ class Cat extends Model
 {
     use Translatable;
 
-    public $translatedAttributes = ['name'];
     protected $guarded = ['id'];
-
-    public function cat_translations()
-    {
-        return $this->hasMany('App\CatTranslation');
-    }
+    public $translatedAttributes = ['name'];
 }
