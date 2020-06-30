@@ -91,9 +91,9 @@
 
                     <td class="row justify-content-center align-items-center" style="height: 100px;">
                         @if (auth()->user()->hasPermission('update_users'))
-                        <a href="{{route('dashboard.users.edit', $user->id)}}" class="btn btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{{route('dashboard.users.edit', $user->id)}}" class="btn btn-sm btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @else
-                        <a href="#" class="btn btn-info disabled mr-2"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="#" class="btn btn-sm btn-info disabled mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @endif
 
                         @if (auth()->user()->hasPermission('delete_users'))
@@ -101,10 +101,10 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger delete"><i class="fa fa-trash"></i> Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i> Delete</button>
                         </form>
                         @else
-                        <a href="#" class="btn btn-danger disabled"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="#" class="btn btn-sm btn-danger disabled"><i class="fa fa-trash"></i> Delete</a>
                         @endif
                     </td>
                 </tr>

@@ -12,4 +12,9 @@ class Cat extends Model
 
     protected $guarded = ['id'];
     public $translatedAttributes = ['name'];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

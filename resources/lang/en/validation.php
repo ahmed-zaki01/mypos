@@ -137,6 +137,9 @@ return [
             'name' => [
                 'required' => 'Name is required',
                 'min' => 'Minimum characters of name field is 3'
+            ],
+            'desc' => [
+                'required' => 'Description is required',
             ]
         ]
     ],
@@ -153,11 +156,15 @@ return [
     */
 
     'attributes' => [
+        'img' => 'image',
+        'cat_id' => 'category',
         'en' => [
             'name' => 'english name',
+            'desc' => 'english description',
         ],
         'ar' => [
             'name' => 'arabic name',
+            'desc' => 'arabic description',
         ],
     ],
 

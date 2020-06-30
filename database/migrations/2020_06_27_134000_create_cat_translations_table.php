@@ -19,7 +19,6 @@ class CreateCatTranslationsTable extends Migration
             $table->string('locale')->index();
             $table->string('name', 80);
             $table->unique(['cat_id', 'locale']);
-
             $table->timestamps();
         });
     }

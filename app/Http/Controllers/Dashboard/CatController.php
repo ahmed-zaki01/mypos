@@ -6,7 +6,6 @@ use App\Cat;
 use App\CatTranslation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -26,10 +25,8 @@ class CatController extends Controller
 
         $locale = LaravelLocalization::getCurrentLocale();
 
-        $cats = CatTranslation::where('locale', $locale)->Where(function ($q) use ($request) {
-            return $q->when($request->search, function ($q) use ($request) {
-                return $q->where('name', 'like', '%' . $request->search . '%');
-            });
+        $cats = Cat::when($request->search, function ($q) use ($request) {
+            return $q->whereTranslationLike('name', '%' . $request->search . '%');
         })->latest()->paginate(5);
 
         return view('dashboard.cats.index', compact('cats'));
@@ -54,7 +51,7 @@ class CatController extends Controller
         $data = $request->validate($rules);
 
         Cat::create($data);
-        session()->flash('status', 'Category created successfully!');
+        session()->flash('status', 'Category added successfully!');
         return redirect(route('dashboard.cats.index'));
     }
 

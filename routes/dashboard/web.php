@@ -28,7 +28,7 @@ Route::group(
             // });
 
             //product routes
-            //Route::resource('products', 'ProductController')->except(['show']);
+            Route::resource('products', 'ProductController')->except(['show']);
         }); //end of dashboard routes
     }
 );

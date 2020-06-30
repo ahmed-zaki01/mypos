@@ -24,10 +24,8 @@ class UserController extends Controller
         //  $data['users'] = User::all();
 
 
-        $data['users'] = User::whereRoleIs('admin')->where(function ($q) use ($request) {
-            return $q->when($request->search, function ($q) use ($request) {
-                return $q->where('first_name', 'like', '%' . $request->search . '%')->orWhere('last_name', 'like', '%' . $request->search . '%');
-            });
+        $data['users'] = User::whereRoleIs('admin')->when($request->search, function ($q) use ($request) {
+            return $q->where('first_name', 'like', '%' . $request->search . '%')->orWhere('last_name', 'like', '%' . $request->search . '%');
         })->latest()->paginate(5);
 
 

@@ -154,27 +154,45 @@
     @yield('script')
     <!-- custom public script -->
     <script>
-        $('.delete').click(function(e) {
-            //"use strict";
-            e.preventDefault();
-            var that = $(this);
+        $(document).ready(function () {
 
-            var noty = new Noty({
-                text: 'Are you sure you want to delete?',
-                type: 'warning',
-                layout: 'topRight',
-                killer: true,
-                buttons: [
-                    Noty.button('Yes', 'btn btn-success mr-2', function () {
-                        that.closest('form').submit();
-                    }),
-                    Noty.button('No', 'btn btn-primary', function() {
-                        noty.close();
-                    })
-                ]
+            $('.delete').click(function(e) {
+                //"use strict";
+                e.preventDefault();
+                var that = $(this);
+
+                var noty = new Noty({
+                    text: 'Are you sure you want to delete?',
+                    type: 'warning',
+                    layout: 'topRight',
+                    killer: true,
+                    buttons: [
+                        Noty.button('Yes', 'btn btn-success mr-2', function () {
+                            that.closest('form').submit();
+                        }),
+                        Noty.button('No', 'btn btn-primary', function() {
+                            noty.close();
+                        })
+                    ]
+                });
+                noty.show();
             });
-            noty.show();
+
+            $(".img-input").change(function() {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('.img-preview').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(this.files[0]); // convert to base64 string
+                }
+            });
+
+            CKEDITOR.config.language = "{{ app()->getLocale() }}";
         });
+
     </script>
 
 </body>

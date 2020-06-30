@@ -29,22 +29,32 @@
                     </a>
                 </li>
 
-                @if (auth()->user()->hasPermission('read_users'))
-
-                <li class="nav-item">
-                    <a href="{{route('dashboard.users.index')}}" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <p class="ml-1">Users</p>
-                    </a>
-                </li>
-                @endif
-
                 @if (auth()->user()->hasPermission('read_cats'))
 
                 <li class="nav-item">
                     <a href="{{route('dashboard.cats.index')}}" class="nav-link">
                         <i class="fas fa-list"></i>
-                        <p class="ml-1">Categories</p>
+                        <p class="ml-1">@lang('site.cats')</p>
+                    </a>
+                </li>
+                @endif
+
+                @if (auth()->user()->hasPermission('read_products'))
+
+                <li class="nav-item">
+                    <a href="{{route('dashboard.products.index')}}" class="nav-link">
+                        <i class="fas fa-list"></i>
+                        <p class="ml-1">@lang('site.products.products')</p>
+                    </a>
+                </li>
+                @endif
+
+                @if (auth()->user()->hasPermission('read_users'))
+
+                <li class="nav-item">
+                    <a href="{{route('dashboard.users.index')}}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <p class="ml-1">@lang('site.users')</p>
                     </a>
                 </li>
                 @endif

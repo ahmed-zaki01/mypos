@@ -72,21 +72,25 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th>@lang('site.name')</th>
+                    <th>@lang('site.total_products')</th>
+                    <th>@lang('site.related_products')</th>
+                    <th>@lang('site.actions')</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($cats as $index => $cat)
 
                 <tr>
-                    <td class="table-col">{{$index + 1}}</td>
-                    <td class="table-col">{{$cat->name}}</td>
+                    <td class="table-col">{{ $index + 1 }}</td>
+                    <td class="table-col">{{ $cat->name }}</td>
+                    <td class="table-col">{{ $cat->products->count() }}</td>
+                    <td class="table-col"><a href="{{route('dashboard.products.index', ['cat_id' => $cat->id])}}" class="btn btn-sm btn-info">@lang('site.related_products')</a></td>
                     <td class="row justify-content-center align-items-center">
                         @if (auth()->user()->hasPermission('update_cats'))
-                        <a href="{{route('dashboard.cats.edit', $cat->id)}}" class="btn btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{{route('dashboard.cats.edit', $cat->id)}}" class="btn btn-sm btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @else
-                        <a href="#" class="btn btn-info disabled mr-2"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="#" class="btn btn-sm btn-info disabled mr-2"><i class="fa fa-edit"></i> Edit</a>
                         @endif
 
                         @if (auth()->user()->hasPermission('delete_cats'))
@@ -94,10 +98,10 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger delete"><i class="fa fa-trash"></i> Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i> Delete</button>
                         </form>
                         @else
-                        <a href="#" class="btn btn-danger disabled"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="#" class="btn btn-sm btn-danger disabled"><i class="fa fa-trash"></i> Delete</a>
                         @endif
                     </td>
                 </tr>
