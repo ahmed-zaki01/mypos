@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'name' => 'Name',
+    'desc' => 'Description',
+    'img' => 'Image',
+    'primary_phone' => 'Primary Phone',
+    'secondary_phone' => 'Secondary Phone',
     'dashboard' => 'Dashboard',
     'actions' => 'Actions',
     'lang' => 'Languages',
@@ -10,6 +15,7 @@ return [
     'all_cats' => 'All Categories',
     'total_products' => 'Total Products',
     'related_products' => 'Related Products',
+
     'products' => [
         'products' => 'Products',
         'product' => 'Product',
@@ -18,9 +24,14 @@ return [
         'purchase_price' => 'Purchase Price',
         'profit_percent' => 'Profit Percent',
     ],
-    'name' => 'Name',
-    'desc' => 'Description',
-    'img' => 'Image',
+
+    'clients' => [
+        'clients' => 'Clients',
+        'address' => 'Address',
+    ],
+
+
+
     'en' => [
         'name' => 'Name With English',
         'desc' => 'Description With English'

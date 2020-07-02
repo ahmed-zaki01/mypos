@@ -49,6 +49,16 @@
                 </li>
                 @endif
 
+                @if (auth()->user()->hasPermission('read_clients'))
+
+                <li class="nav-item">
+                    <a href="{{route('dashboard.clients.index')}}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <p class="ml-1">@lang('site.clients.clients')</p>
+                    </a>
+                </li>
+                @endif
+
                 @if (auth()->user()->hasPermission('read_users'))
 
                 <li class="nav-item">

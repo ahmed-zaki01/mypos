@@ -141,7 +141,9 @@ return [
             'desc' => [
                 'required' => 'Description is required',
             ]
-        ]
+        ],
+
+        'phone.*.regex' => 'The :attribute should be a valid phone number.',
     ],
 
     /*
@@ -158,6 +160,8 @@ return [
     'attributes' => [
         'img' => 'image',
         'cat_id' => 'category',
+        'phone.0' => 'primary phone',
+        'phone.1' => 'secondary phone',
         'en' => [
             'name' => 'english name',
             'desc' => 'english description',
