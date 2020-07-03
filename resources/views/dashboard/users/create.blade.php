@@ -53,7 +53,7 @@
 
                 <div class="nav-tabs-custom" id="permissions">
                     @php
-                    $models = ['users', 'cats', 'products'];
+                    $models = ['users', 'cats', 'products', 'clients', 'orders'];
                     $maps = array(
                     'read' => 'view',
                     'create' => 'add',

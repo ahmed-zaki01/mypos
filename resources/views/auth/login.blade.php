@@ -7,12 +7,12 @@
     <title>MyPOS | Login</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('dashboard/img')}}/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('dashboard_files/img')}}/favicon.png">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('dashboard/plugins')}}/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/fontawesome-free/css/all.min.css" />
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('dashboard/css')}}/adminlte.min.css" />
+    <link rel="stylesheet" href="{{asset('dashboard_files/css')}}/adminlte.min.css" />
 
     @if (app()->getLocale() == 'en')
 
@@ -22,9 +22,9 @@
     <!-- Google Font: Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- bootstrap rtl -->
-    <link rel="stylesheet" href="{{asset('dashboard/css')}}/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="{{asset('dashboard_files/css')}}/bootstrap-rtl.min.css">
     <!-- template rtl version -->
-    <link rel="stylesheet" href="{{asset('dashboard/css')}}/custom-style.css">
+    <link rel="stylesheet" href="{{asset('dashboard_files/css')}}/custom-style.css">
 
     <style>
         body,

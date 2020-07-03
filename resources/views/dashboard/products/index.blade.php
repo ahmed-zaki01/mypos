@@ -40,7 +40,7 @@
                 <h3 class="card-title mt-3">@lang('site.products.products') Table - Total ({{ $products->total() }})</h3>
             </div>
             <!-- /.col -->
-            <div class="col-sm-9 d-flex  text-right">
+            <div class="col-sm-8">
                 <form action="{{ route('dashboard.products.index') }}" method="GET" class="w-100">
                     <div class="row justify-content-between mt-1">
                         <div class="col-md-10">
@@ -62,7 +62,7 @@
                         @if (auth()->user()->hasPermission('create_products'))
                         <a href="{{ route('dashboard.products.create') }}" class="btn btn-primary col-md-2"><i class="fa fa-plus"></i> Add</a>
                         @else
-                        <a href="#" class="btn btn-sm btn-primary disabled"><i class="fa fa-plus"></i> Add</a>
+                        <a href="#" class="btn btn-primary col-md-2 disabled"><i class="fa fa-plus"></i> Add</a>
                         @endif
 
                     </div>
@@ -81,7 +81,7 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>@lang('site.cat')</th>
+                    {{-- <th>@lang('site.cat')</th> --}}
                     <th>@lang('site.name')</th>
                     <th>@lang('site.img')</th>
                     <th>@lang('site.products.sell_price')</th>
@@ -96,7 +96,7 @@
 
                 <tr>
                     <td class="table-col">{{ $index + 1 }}</td>
-                    <td class="table-col">{{ $product->cat->name }}</td>
+                    {{-- <td class="table-col">{{ $product->cat->name }}</td> --}}
                     <td class="table-col">{{ $product->name }}</td>
                     <td class="table-col"><img src="{{ $product->img_path }}" style="height: 75px;" class="img-thumbnail" alt="product image"></td>
                     <td class="table-col">{{ $product->purchase_price }}</td>

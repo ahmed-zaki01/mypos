@@ -2,8 +2,15 @@
 
 
 @section('script')
-<script src="{{asset('dashboard/plugins')}}/ckeditor/ckeditor.js"></script>
-<script src="{{asset('dashboard/plugins')}}/ckeditor/styles.js"></script>
+<script src="{{asset('dashboard_files/plugins')}}/ckeditor/ckeditor.js">
+
+</script>
+<script src="{{asset('dashboard_files/plugins')}}/ckeditor/styles.js"></script>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.config.language = "{{ app()->getLocale() }}";
+    });
+</script>
 @endsection
 
 
@@ -60,12 +67,12 @@
 
             <div class="form-group">
                 <label for="purchase_price">@lang('site.products.purchase_price')</label>
-                <input type="number" name="purchase_price" value="{{$product->purchase_price}}" class="form-control" id="purchase_price">
+                <input type="number" name="purchase_price" value="{{$product->purchase_price}}" step="0.01" class="form-control" id="purchase_price">
             </div>
 
             <div class="form-group">
                 <label for="sell_price">@lang('site.products.sell_price')</label>
-                <input type="number" name="sell_price" value="{{$product->sell_price}}" class="form-control" id="sell_price">
+                <input type="number" name="sell_price" value="{{$product->sell_price}}" step="0.01" class="form-control" id="sell_price">
             </div>
 
             <div class="form-group">

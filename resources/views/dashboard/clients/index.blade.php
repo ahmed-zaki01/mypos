@@ -76,6 +76,7 @@
                     <th>@lang('site.primary_phone')</th>
                     <th>@lang('site.secondary_phone')</th>
                     <th>@lang('site.clients.address')</th>
+                    <th>@lang('site.clients.add_order')</th>
                     <th>@lang('site.actions')</th>
                 </tr>
             </thead>
@@ -93,6 +94,13 @@
 
                     <td class="table-col">{{ $client->address }}</td>
 
+                    <td class="table-col">
+                        @if (auth()->user()->hasPermission('create_orders'))
+                        <a class="btn btn-sm btn-primary" href="{{route('dashboard.clients.orders.create', $client->id)}}">Add Order</a>
+                        @else
+                        <a class="btn btn-sm btn-primary disabled" href="#">Add Order</a>
+                        @endif
+                    </td>
                     <td class="row justify-content-center align-items-center">
                         @if (auth()->user()->hasPermission('update_clients'))
                         <a href="{{route('dashboard.clients.edit', $client->id)}}" class="btn btn-sm btn-info mr-2"><i class="fa fa-edit"></i> Edit</a>

@@ -14,7 +14,7 @@ Route::group(
     function () {
         Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
 
-            Route::get('/index', 'DashboardController@index')->name('index');
+            Route::get('/', 'DashboardController@index')->name('index');
             Route::get('/logout', 'DashboardController@logout')->name('logout');
 
 
@@ -32,6 +32,7 @@ Route::group(
 
             //client routes
             Route::resource('clients', 'ClientController')->except(['show']);
+            Route::resource('clients.orders', 'Client\OrderController')->except(['show']);
         }); //end of dashboard routes
     }
 );

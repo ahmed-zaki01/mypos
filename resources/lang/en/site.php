@@ -20,17 +20,24 @@ return [
         'products' => 'Products',
         'product' => 'Product',
         'stock' => 'Stock',
+        'price' => 'Price',
         'sell_price' => 'Sell Price',
         'purchase_price' => 'Purchase Price',
         'profit_percent' => 'Profit Percent',
+        'add_product' => 'Add',
     ],
 
     'clients' => [
         'clients' => 'Clients',
         'address' => 'Address',
+        'add_order' => 'Add Order',
     ],
 
-
+    'orders' => 'Orders',
+    'items' => 'Items',
+    'total_price' => 'Total Price',
+    'quantity' => 'Quantity',
+    'delete' => 'Delete',
 
     'en' => [
         'name' => 'Name With English',

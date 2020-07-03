@@ -7,17 +7,17 @@
     <title>MyPOS | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('dashboard/img')}}/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('dashboard_files/img')}}/favicon.png">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('dashboard/plugins')}}/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/fontawesome-free/css/all.min.css" />
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <!-- Noty -->
-    <link rel="stylesheet" href="{{asset('dashboard/plugins')}}/noty/noty.min.css">
+    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/noty/noty.min.css">
     <!-- noty plugin -->
-    <script src="{{asset('dashboard/plugins')}}/noty/noty.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/noty/noty.min.js"></script>
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('dashboard/css')}}/adminlte.min.css" />
+    <link rel="stylesheet" href="{{asset('dashboard_files/css')}}/adminlte.min.css" />
 
     @if (app()->getLocale() == 'en')
 
@@ -27,9 +27,9 @@
     <!-- Google Font: Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- bootstrap rtl -->
-    <link rel="stylesheet" href="{{asset('dashboard/css')}}/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="{{asset('dashboard_files/css')}}/bootstrap-rtl.min.css">
     <!-- template rtl version -->
-    <link rel="stylesheet" href="{{asset('dashboard/css')}}/custom-style.css">
+    <link rel="stylesheet" href="{{asset('dashboard_files/css')}}/custom-style.css">
 
     <style>
         body,
@@ -46,9 +46,9 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('dashboard/plugins')}}/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/overlayScrollbars/css/OverlayScrollbars.min.css" />
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{asset('dashboard/plugins')}}/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/daterangepicker/daterangepicker.css" />
 
     <!-- custom page style -->
     @yield('style')
@@ -131,67 +131,37 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{asset('dashboard/plugins')}}/jquery/jquery.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="{{asset('dashboard/plugins')}}/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge("uibutton", $.ui.button);
     </script>
     <!-- Bootstrap 4 -->
-    <script src="{{asset('dashboard/plugins')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="{{asset('dashboard/plugins')}}/chart.js/Chart.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/chart.js/Chart.min.js"></script>
     <!-- daterangepicker -->
-    <script src="{{asset('dashboard/plugins')}}/moment/moment.min.js"></script>
-    <script src="{{asset('dashboard/plugins')}}/daterangepicker/daterangepicker.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/moment/moment.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/daterangepicker/daterangepicker.js"></script>
     <!-- overlayScrollbars -->
-    <script src="{{asset('dashboard/plugins')}}/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+    <script src="{{asset('dashboard_files/plugins')}}/ckeditor/ckeditor.js"></script>
+    <!-- jQuery number -->
+    <script src="{{asset('dashboard_files/plugins')}}/jquery-number/jquery.number.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="{{asset('dashboard')}}/js/adminlte.min.js"></script>
+    <script src="{{asset('dashboard_files/js')}}/adminlte.min.js"></script>
+
+    <!-- custom js script -->
+    <script src="{{asset('dashboard_files/js')}}/script.js"></script>
 
     <!-- custom page script -->
     @yield('script')
     <!-- custom public script -->
+
     <script>
-        $(document).ready(function () {
-
-            $('.delete').click(function(e) {
-                //"use strict";
-                e.preventDefault();
-                var that = $(this);
-
-                var noty = new Noty({
-                    text: 'Are you sure you want to delete?',
-                    type: 'warning',
-                    layout: 'topRight',
-                    killer: true,
-                    buttons: [
-                        Noty.button('Yes', 'btn btn-success mr-2', function () {
-                            that.closest('form').submit();
-                        }),
-                        Noty.button('No', 'btn btn-primary', function() {
-                            noty.close();
-                        })
-                    ]
-                });
-                noty.show();
-            });
-
-            $(".img-input").change(function() {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        $('.img-preview').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(this.files[0]); // convert to base64 string
-                }
-            });
-
-            CKEDITOR.config.language = "{{ app()->getLocale() }}";
-        });
 
     </script>
 
