@@ -29,8 +29,9 @@ class OrderController extends Controller
         return view('dashboard.clients.orders.create')->with($data);
     } // end of create
 
-    public function store(Request $request)
+    public function store(Request $request, Client $client)
     {
+        dd($request->all());
     } // end of store
 
     public function edit(Order $order)

@@ -76,25 +76,25 @@
                         <h3 class="card-title">@lang('site.items')</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover text-center mb-3">
-                            <thead>
-                                <tr>
-                                    <th>@lang('site.products.product')</th>
-                                    <th>@lang('site.quantity')</th>
-                                    <th>@lang('site.products.price')</th>
-                                    <th>@lang('site.delete')</th>
+                        <form action="{{route('dashboard.clients.orders.store', $client->id)}}" method="post">
+                            @csrf
+                            @method('POST')
 
-                                </tr>
-                            </thead>
-                            <tbody class="order-list">
-                                <form action="" method="post">
+                            <table class="table table-hover text-center mb-3">
+                                <thead>
+                                    <tr>
+                                        <th>@lang('site.products.product')</th>
+                                        <th>@lang('site.quantity')</th>
+                                        <th>@lang('site.products.price')</th>
+                                        <th>@lang('site.delete')</th>
 
-                                </form>
-
-                            </tbody>
+                                    </tr>
+                                </thead>
+                                <tbody class="order-list"></tbody>
+                        </form>
                         </table>
                         <h4 class="">@lang('site.total_price'): <span class="total-price">0</span></h4>
-                        <a href="#" class="btn btn-block btn-primary disabled add-order">@lang('site.products.add_product')</a>
+                        <button type="submit" id="add-order-btn" href="#" class="btn btn-block btn-primary disabled text-uppercase" style="font-size: 1.2rem;">@lang('site.products.add_product')</button>
                     </div>
                 </div>
             </div>

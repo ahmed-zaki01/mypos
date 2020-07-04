@@ -17,7 +17,12 @@ class Product extends Model
     public function cat()
     {
         return $this->belongsTo(Cat::class);
-    }
+    } // end of cat relation
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    } // end of order relation
 
     public function getImgPathAttribute()
     {

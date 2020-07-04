@@ -84,8 +84,8 @@
                     {{-- <th>@lang('site.cat')</th> --}}
                     <th>@lang('site.name')</th>
                     <th>@lang('site.img')</th>
-                    <th>@lang('site.products.sell_price')</th>
                     <th>@lang('site.products.purchase_price')</th>
+                    <th>@lang('site.products.sell_price')</th>
                     <th>@lang('site.products.profit_percent') %</th>
                     <th>@lang('site.products.stock')</th>
                     <th>Actions</th>

@@ -18,7 +18,7 @@ class User extends Authenticatable
     ];
 
 
-    protected $appends = ['img_path'];
+    protected $appends = ['img_path', 'full_name'];
 
     protected $hidden = [
         'password', 'remember_token',
@@ -30,6 +30,11 @@ class User extends Authenticatable
     ];
 
 
+    public function getFullNameAttribute()
+    {
+        $full_name = $this->first_name . ' ' . $this->last_name;
+        return ucwords($full_name);
+    }
     public function getFirstNameAttribute($value)
     {
         return ucfirst($value);

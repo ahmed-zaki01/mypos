@@ -12,15 +12,13 @@ class CatSeeder extends Seeder
      */
     public function run()
     {
-        $data = [];
         $cats = ['cat one', 'cat two', 'cat three'];
 
-        for ($i = 0; $i < count($cats); $i++) {
-            foreach (config('translatable.locales') as $locale) {
-                $data += [$locale . '.name' => $cats[$i]];
-            }
-            Cat::create($data);
-            $data = [];
+        foreach ($cats as $cat) {
+            Cat::create([
+                'en' => ['name' => $cat],
+                'ar' => ['name' => $cat],
+            ]);
         }
     }
 }

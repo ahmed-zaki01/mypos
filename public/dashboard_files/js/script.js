@@ -50,7 +50,7 @@ $(document).ready(function () {
         var orderListContent = `
             <tr>
                 <td class="table-col">${name}</td>
-                <td class="table-col"><input type="number" name="quantity[]" data-price="${price}" class="quantity-input" min="1" value="1"></td>
+                <td class="table-col"><input type="number" name="products[${id}][quantity]" data-price="${price}" class="quantity-input" min="1" value="1"></td>
                 <td class="table-col product-price">${$.number(price, 2)}</td>
                 <td class="table-col"><button class="btn btn-sm btn-danger delete-prod-btn" data-id="${id}"><i class="fa fa-trash"></i></button></td>
             </tr>
@@ -92,6 +92,12 @@ function calculateTotalPrice() {
     $('.order-list .product-price').each(function () {
         totalPrice += parseFloat($(this).html().replace(/,/g, ''));
     });
+
+    if (totalPrice > 0) {
+        $('#add-order-btn').removeClass('disabled');
+    } else {
+        $('#add-order-btn').addClass('disabled');
+    }
 
     $('.total-price').html($.number(totalPrice, 2));
 }
