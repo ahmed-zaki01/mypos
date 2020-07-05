@@ -34,10 +34,18 @@ return [
     ],
 
     'orders' => 'Orders',
+    'order' => 'Order',
     'items' => 'Items',
+    'order_products' => "Products of",
+    'order_title' => 'Order Title',
+    'client_name' => 'Client Name',
     'total_price' => 'Total Price',
     'quantity' => 'Quantity',
     'delete' => 'Delete',
+    'status' => 'Status',
+    'show' => 'Show',
+    'print' => 'Print',
+    'created_at' => 'Added At',
 
     'en' => [
         'name' => 'Name With English',

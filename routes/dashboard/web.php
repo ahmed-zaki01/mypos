@@ -30,6 +30,9 @@ Route::group(
             //product routes
             Route::resource('products', 'ProductController')->except(['show']);
 
+            //orders routes
+            Route::resource('orders', 'OrderController')->only(['index', 'show', 'destroy']);
+
             //client routes
             Route::resource('clients', 'ClientController')->except(['show']);
             Route::resource('clients.orders', 'Client\OrderController')->except(['show']);

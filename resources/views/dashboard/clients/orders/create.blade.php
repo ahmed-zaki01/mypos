@@ -46,7 +46,7 @@
                                         <tr>
                                             <td class="table-col">{{ $index + 1 }}</td>
                                             <td class="table-col">{{ $product->name }}</td>
-                                            <td class="table-col">{{ $product->sell_price }}</td>
+                                            <td class="table-col">{{ number_format($product->sell_price, 2) }}</td>
                                             <td class="table-col">
                                                 <a href="#" class="btn btn-sm btn-success add-product-btn" id="product-{{$product->id}}" data-id="{{$product->id}}" data-name="{{$product->name}}" data-price="{{$product->sell_price}}">
                                                     <i class="fa fa-plus"></i>
@@ -87,14 +87,13 @@
                                         <th>@lang('site.quantity')</th>
                                         <th>@lang('site.products.price')</th>
                                         <th>@lang('site.delete')</th>
-
                                     </tr>
                                 </thead>
                                 <tbody class="order-list"></tbody>
+                            </table>
+                            <h4 class="">@lang('site.total_price'): <span class="total-price">0</span></h4>
+                            <button type="submit" id="add-order-btn" href="#" class="btn btn-block btn-primary disabled text-uppercase" style="font-size: 1.2rem;">@lang('site.products.add_product')</button>
                         </form>
-                        </table>
-                        <h4 class="">@lang('site.total_price'): <span class="total-price">0</span></h4>
-                        <button type="submit" id="add-order-btn" href="#" class="btn btn-block btn-primary disabled text-uppercase" style="font-size: 1.2rem;">@lang('site.products.add_product')</button>
                     </div>
                 </div>
             </div>

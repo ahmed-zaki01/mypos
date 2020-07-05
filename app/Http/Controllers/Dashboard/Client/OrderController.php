@@ -6,6 +6,7 @@ use App\Cat;
 use App\Client;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -31,10 +32,40 @@ class OrderController extends Controller
 
     public function store(Request $request, Client $client)
     {
-        dd($request->all());
+
+        // dd($request->all());
+
+        $products = $request->validate([
+            'products' => 'required|array',
+            'products.*' => 'required|exists:products,id',
+        ])['products'];
+
+        $order = $client->orders()->create([]);
+        $order->products()->attach($products);
+
+
+        $totalPrice = 0;
+        // update product stock, calculate total price of order
+        foreach ($products as $prodId => $quantityArray) {
+
+            $product = Product::select('id', 'sell_price', 'stock')->where('id', $prodId)->first();
+
+            $totalPrice += $product->sell_price * $quantityArray['quantity'];
+
+            $product->update([
+                'stock' => $product->stock - $quantityArray['quantity']
+            ]);
+        } // end of foreach
+
+        $order->update([
+            'total_price' => $totalPrice
+        ]);
+
+        session()->flash('status', 'Order Added successfully!');
+        return redirect(route('dashboard.orders.index'));
     } // end of store
 
-    public function edit(Order $order)
+    public function edit(Client $client, Order $order)
     {
     } // end of edit
 

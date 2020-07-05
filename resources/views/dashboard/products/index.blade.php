@@ -99,8 +99,8 @@
                     {{-- <td class="table-col">{{ $product->cat->name }}</td> --}}
                     <td class="table-col">{{ $product->name }}</td>
                     <td class="table-col"><img src="{{ $product->img_path }}" style="height: 75px;" class="img-thumbnail" alt="product image"></td>
-                    <td class="table-col">{{ $product->purchase_price }}</td>
-                    <td class="table-col">{{ $product->sell_price }}</td>
+                    <td class="table-col">{{ number_format($product->purchase_price, 2)  }}</td>
+                    <td class="table-col">{{ number_format($product->sell_price, 2) }}</td>
                     <td class="table-col">{{ $product->profit_percent }} %</td>
                     <td class="table-col">{{ $product->stock }}</td>
                     <td class="row justify-content-center align-items-center" style="height: 100px;">

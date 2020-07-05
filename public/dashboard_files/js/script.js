@@ -1,9 +1,10 @@
-// image preview
 $(document).ready(function () {
+
+    // handle nuty delete button
     $('.delete').click(function (e) {
         //"use strict";
         e.preventDefault();
-        // var that = $(this);
+        var that = $(this);
 
         var noty = new Noty({
             text: 'Are you sure you want to delete?',
@@ -12,7 +13,7 @@ $(document).ready(function () {
             killer: true,
             buttons: [
                 Noty.button('Yes', 'btn btn-success mr-2', function () {
-                    $(this).closest('form').submit();
+                    that.closest('form').submit();
                 }),
                 Noty.button('No', 'btn btn-primary', function () {
                     noty.close();
@@ -22,8 +23,7 @@ $(document).ready(function () {
         noty.show();
     });
 
-    // end of image preview
-
+    // handle image preview
     $(".img-input").change(function () {
         if (this.files && this.files[0]) {
             var reader = new FileReader();
@@ -40,6 +40,7 @@ $(document).ready(function () {
 
 // handle create order
 $(document).ready(function () {
+
     // handle add product
     $(".add-product-btn").click(function (e) {
         e.preventDefault();
@@ -74,17 +75,38 @@ $(document).ready(function () {
     });
 
 
+    // handle order total price and product total price labels
     $('body').on('change keyup', '.quantity-input', function () {
         $unitPrice = Number($(this).data('price'));
         $quantity = Number($(this).val());
         $(this).closest('tr').find('.product-price').html($.number($unitPrice * $quantity, 2));
         calculateTotalPrice();
     });
+
+    // view products of an order
+    $('.view-products-btn').click(function (e) {
+        e.preventDefault();
+        var url = $(this).data('url');
+        var method = $(this).data('method');
+
+        $('#loading').css('display', 'flex');
+        $.ajax({
+            method: method,
+            url: url,
+            success: function (data) {
+                $('#loading').css('display', 'none');
+
+                $('#order-products-list').empty();
+                $('#order-products-list').append(data);
+
+            }
+
+        });
+
+
+    });
 });
 
-$('.add-order').click(function () {
-    alert("hello from add")
-});
 
 // calculate total price
 function calculateTotalPrice() {

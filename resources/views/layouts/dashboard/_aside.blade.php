@@ -43,8 +43,18 @@
 
                 <li class="nav-item">
                     <a href="{{route('dashboard.products.index')}}" class="nav-link">
-                        <i class="fas fa-list"></i>
+                        <i class="fas fa-tv"></i>
                         <p class="ml-1">@lang('site.products.products')</p>
+                    </a>
+                </li>
+                @endif
+
+                @if (auth()->user()->hasPermission('read_orders'))
+
+                <li class="nav-item">
+                    <a href="{{route('dashboard.orders.index')}}" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p class="ml-1">@lang('site.orders')</p>
                     </a>
                 </li>
                 @endif
@@ -63,7 +73,7 @@
 
                 <li class="nav-item">
                     <a href="{{route('dashboard.users.index')}}" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users-cog"></i>
                         <p class="ml-1">@lang('site.users')</p>
                     </a>
                 </li>

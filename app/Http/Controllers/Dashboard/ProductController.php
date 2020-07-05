@@ -108,6 +108,8 @@ class ProductController extends Controller
 
         $data = $request->validate($rules);
 
+        //dd($data);
+
         if ($data['img']) {
             // check to delete old image from products folder except default.png
             if ($product->img !== 'default.png') {
@@ -120,8 +122,9 @@ class ProductController extends Controller
             })->save(public_path('uploads/products/' . $imgNewName));
 
             $data['img'] = $imgNewName;
-        }
+        } // end of product img condition
 
+        // $data['img'] = 'default.png';
         $product->update($data);
 
         session()->flash('status', 'Product has been updated successfully!');
