@@ -25,6 +25,7 @@ return [
         'purchase_price' => 'Purchase Price',
         'profit_percent' => 'Profit Percent',
         'add_product' => 'Add',
+        'edit' => 'Edit',
     ],
 
     'clients' => [

@@ -19,9 +19,6 @@ class OrderController extends Controller
         $this->middleware(['permission:delete_orders'])->only('destroy');
     } // end of construct
 
-    public function index()
-    {
-    } // end of index
 
     public function create(Client $client)
     {
@@ -37,8 +34,39 @@ class OrderController extends Controller
 
         $products = $request->validate([
             'products' => 'required|array',
-            'products.*' => 'required|exists:products,id',
+
         ])['products'];
+
+        $this->attach_order($products, $client);
+
+        session()->flash('status', 'Order Added successfully!');
+        return redirect(route('dashboard.orders.index'));
+    } // end of store
+
+    public function edit(Client $client, Order $order)
+    {
+        $cats = Cat::with('products')->get();
+        return view('dashboard.clients.orders.edit', compact(['client', 'order', 'cats']));
+    } // end of edit
+
+    public function update(Request $request, Client $client, Order $order)
+    {
+
+        $products = $request->validate([
+            'products' => 'required|array',
+
+        ])['products'];
+
+        $this->detach_order($order);
+        $this->attach_order($products, $client);
+
+        session()->flash('status', 'Order Updated successfully!');
+        return redirect(route('dashboard.orders.index'));
+    } // end of update
+
+
+    private function attach_order($products, $client)
+    {
 
         $order = $client->orders()->create([]);
         $order->products()->attach($products);
@@ -60,22 +88,17 @@ class OrderController extends Controller
         $order->update([
             'total_price' => $totalPrice
         ]);
+    } // end of attach order method
 
-        session()->flash('status', 'Order Added successfully!');
-        return redirect(route('dashboard.orders.index'));
-    } // end of store
-
-    public function edit(Client $client, Order $order)
+    private function detach_order($order)
     {
-    } // end of edit
+        // restore the stock
+        foreach ($order->products as $product) {
+            $product->update([
+                'stock' => $product->pivot->quantity + $product->stock
+            ]);
+        }
 
-    public function update(Request $request, Client $client, Order $order)
-    {
-    } // end of update
-
-
-    public function destroy(Client $client, Order $order)
-    {
-    } // end of destroy
-
-}
+        $order->delete();
+    } // end of detach order method
+} // end of controller

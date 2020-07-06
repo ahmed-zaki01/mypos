@@ -77,9 +77,9 @@ $(document).ready(function () {
 
     // handle order total price and product total price labels
     $('body').on('change keyup', '.quantity-input', function () {
-        $unitPrice = Number($(this).data('price'));
-        $quantity = Number($(this).val());
-        $(this).closest('tr').find('.product-price').html($.number($unitPrice * $quantity, 2));
+        unitPrice = Number($(this).data('price'));
+        quantity = Number($(this).val());
+        $(this).closest('tr').find('.product-price').html($.number(unitPrice * quantity, 2));
         calculateTotalPrice();
     });
 
@@ -112,14 +112,15 @@ $(document).ready(function () {
 function calculateTotalPrice() {
     var totalPrice = 0;
     $('.order-list .product-price').each(function () {
+        // console.log('hello');
         totalPrice += parseFloat($(this).html().replace(/,/g, ''));
     });
+
+    $('.total-price').html($.number(totalPrice, 2));
 
     if (totalPrice > 0) {
         $('#add-order-btn').removeClass('disabled');
     } else {
         $('#add-order-btn').addClass('disabled');
     }
-
-    $('.total-price').html($.number(totalPrice, 2));
 }
