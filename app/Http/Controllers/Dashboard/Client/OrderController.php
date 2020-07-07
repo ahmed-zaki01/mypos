@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Dashboard\Client;
 
 use App\Cat;
 use App\Client;
-use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -24,6 +24,8 @@ class OrderController extends Controller
     {
         $data['client'] = $client;
         $data['cats'] = Cat::with('products')->get();
+        $data['orders'] = $client->orders()->latest()->paginate(5);
+
         return view('dashboard.clients.orders.create')->with($data);
     } // end of create
 

@@ -135,8 +135,7 @@
                     <div class="card-header">
                         <h3 class="card-title">@lang('site.products.products')</h3>
                     </div>
-                    <div id="order-products-list" class="card-body">
-                    </div>
+                    <div id="order-products-list" class="card-body"></div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.order details div -->

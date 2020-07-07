@@ -105,6 +105,16 @@ $(document).ready(function () {
 
 
     });
+
+    // print order details
+    $("body").on("click", "#print-btn", function (e) {
+
+        e.preventDefault();
+        $('#print-section').printThis({
+            pageTitle: "Order Details",
+            header: "<h1>Order Details</h1>",
+        });
+    });
 });
 
 

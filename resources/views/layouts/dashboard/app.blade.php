@@ -147,10 +147,12 @@
     <script src="{{asset('dashboard_files/plugins')}}/daterangepicker/daterangepicker.js"></script>
     <!-- overlayScrollbars -->
     <script src="{{asset('dashboard_files/plugins')}}/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
+    {{-- ckeditor plugin --}}
     <script src="{{asset('dashboard_files/plugins')}}/ckeditor/ckeditor.js"></script>
     <!-- jQuery number -->
     <script src="{{asset('dashboard_files/plugins')}}/jquery-number/jquery.number.min.js"></script>
+    {{-- jquery printThis --}}
+    <script src="{{asset('dashboard_files/plugins')}}/jquery-printThis/printThis.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('dashboard_files/js')}}/adminlte.min.js"></script>
 

@@ -10,6 +10,8 @@
 
     <div class="card-body">
         <div class="row">
+
+            {{-- cats with its products --}}
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -99,6 +101,42 @@
             </div>
 
             <!-- /.order details div -->
+
+            {{-- client orders --}}
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">@lang('site.orders') of {{$client->name}}</h3>
+                    </div>
+                    <div class="card-body">
+                        @if ($orders->count())
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>@lang('site.total_price')</th>
+                                    <th>@lang('site.created_at')</th>
+                                    {{-- <th>@lang('site.status')</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($orders as $index => $order)
+
+                                <tr>
+                                    <td class="table-col">{{ $index + 1 }}</td>
+                                    <td class="table-col">{{ number_format($order->total_price, 2) }}</td>
+                                    <td class="table-col">{{ $order->created_at->toFormattedDateString() }}</td>
+                                    {{-- <td class="table-col">{{ $order->status }}</td> --}}
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                        <h4 class="py-2 text-center">@lang('site.no_data_found')</h4>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.card-body -->
