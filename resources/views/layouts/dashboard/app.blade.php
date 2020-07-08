@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <!-- Noty -->
     <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/noty/noty.min.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/morris/morris.css">
     <!-- noty plugin -->
     <script src="{{asset('dashboard_files/plugins')}}/noty/noty.min.js"></script>
     <!-- Theme style -->
@@ -45,11 +47,6 @@
     @endif
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/overlayScrollbars/css/OverlayScrollbars.min.css" />
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{asset('dashboard_files/plugins')}}/daterangepicker/daterangepicker.css" />
-
     <!-- custom page style -->
     @yield('style')
 
@@ -140,19 +137,15 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('dashboard_files/plugins')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="{{asset('dashboard_files/plugins')}}/chart.js/Chart.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="{{asset('dashboard_files/plugins')}}/moment/moment.min.js"></script>
-    <script src="{{asset('dashboard_files/plugins')}}/daterangepicker/daterangepicker.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="{{asset('dashboard_files/plugins')}}/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     {{-- ckeditor plugin --}}
     <script src="{{asset('dashboard_files/plugins')}}/ckeditor/ckeditor.js"></script>
     <!-- jQuery number -->
     <script src="{{asset('dashboard_files/plugins')}}/jquery-number/jquery.number.min.js"></script>
     {{-- jquery printThis --}}
     <script src="{{asset('dashboard_files/plugins')}}/jquery-printThis/printThis.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{{asset('dashboard_files/plugins')}}/morris/morris.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('dashboard_files/js')}}/adminlte.min.js"></script>
 
@@ -162,10 +155,8 @@
     <!-- custom page script -->
     @yield('script')
     <!-- custom public script -->
-
-    <script>
-
-    </script>
+    {{-- custom scripts using blade stack --}}
+    @stack('scripts')
 
 </body>
 

@@ -94,7 +94,7 @@
                                 <tbody class="order-list"></tbody>
                             </table>
                             <h4 class="">@lang('site.total_price'): <span class="total-price">0</span></h4>
-                            <button type="submit" id="add-order-btn" href="#" class="btn btn-block btn-primary disabled text-uppercase" style="font-size: 1.2rem;">@lang('site.products.add_product')</button>
+                            <button type="submit" id="add-order-btn" class="btn btn-block btn-primary disabled text-uppercase" style="font-size: 1.2rem;">@lang('site.products.add_product')</button>
                         </form>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">@lang('site.orders') of {{$client->name}}</h3>
+                        <h3 class="card-title">@lang('site.orders') of {{$client->name}} - Total ({{ $orders->total() }})</h3>
                     </div>
                     <div class="card-body">
                         @if ($orders->count())
@@ -125,7 +125,7 @@
                                 <tr>
                                     <td class="table-col">{{ $index + 1 }}</td>
                                     <td class="table-col">{{ number_format($order->total_price, 2) }}</td>
-                                    <td class="table-col">{{ $order->created_at->toFormattedDateString() }}</td>
+                                    <td class="table-col">{{ $order->created_at->format('m.d.Y H:i:s') }}</td>
                                     {{-- <td class="table-col">{{ $order->status }}</td> --}}
                                 </tr>
                                 @endforeach

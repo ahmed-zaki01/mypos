@@ -131,6 +131,9 @@ function calculateTotalPrice() {
     if (totalPrice > 0) {
         $('#add-order-btn').removeClass('disabled');
     } else {
+        $('#add-order-btn').click(function (e) {
+            e.preventDefault();
+        });
         $('#add-order-btn').addClass('disabled');
     }
 }

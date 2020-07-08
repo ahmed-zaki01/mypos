@@ -30,14 +30,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{ $cats }}</h3>
 
-                    <p>New Orders</p>
+                    <p>@lang('site.cats')</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="ion ion-ios-list-outline"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.cats.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -45,29 +45,29 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px;">%</sup></h3>
+                    <h3>{{ $products }}</h3>
 
-                    <p>Bounce Rate</p>
+                    <p>@lang('site.products.products')</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="ion ion-laptop"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.products.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-primary">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{ $clients }}</h3>
 
-                    <p>User Registrations</p>
+                    <p>@lang('site.clients.clients')</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="ion ion-ios-people"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.clients.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -75,20 +75,63 @@
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <h3>{{ $users }}</h3>
 
-                    <p>Unique Visitors</p>
+                    <p>@lang('site.users')</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+                    <i class="ion ion-android-people"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('dashboard.users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
     </div>
     <!-- /.row -->
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>POS Morris Chart</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart" id="line-chart" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
 </div>
-<!-- /.container-fluid -->
 @endsection
+
+
+@push('scripts')
+<script>
+    /* Morris.js Charts */
+    // Sales chart
+    new Morris.Line({
+        element : 'line-chart',
+        resize : true,
+        data : [
+        @foreach($sales_data as $data)
+            { ym: "{{$data->year}}-{{$data->month}}", sum: "{{$data->sum}}" },
+        @endForeach
+        ],
+        xkey : 'ym',
+        ykeys : ['sum'],
+        labels : ['Total'],
+        lineColors : ['#efefef'],
+        lineWidth : 4,
+        hideHover : 'auto',
+        gridTextColor : '#000',
+        gridStrokeWidth : 0.4,
+        pointSize : 4,
+        pointStrokeColors: ['#efefef'],
+        gridLineColor : '#efefef',
+        gridTextFamily : 'Open Sans',
+        gridTextSize : 10
+    })
+</script>
+@endpush
